@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name" translatable="false">Lanchonete Delicia</string>
+    <string name="title_products">Products</string>
+    <string name="description_logo">Logo Lanchonete</string>
+</resources>
