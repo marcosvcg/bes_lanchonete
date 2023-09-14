@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,15 +22,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView = findViewById(R.id.main_recyclerView_items);
-        List list = Arrays.asList(
-                "Suco de Laranja",
-                "X-Búrguer",
-                "Pizza de Atum",
-                "Refrigerante Zero",
-                "Brigadeirão",
-                "Açaí com Banana"
-        );
-        RecyclerView.Adapter adapter = new ItemAdapter(this, list);
+
+        // List list = Arrays.asList("Suco de Laranja", "X-Búrguer", "Pizza de Atum", "Refrigerante Zero", "Brigadeirão", "Açaí com Banana");
+
+        List<Produto> lista = new ArrayList<>();
+
+        for(int i = 0; i < 10; i++) {
+            lista.add(new Produto("Produto "+i, "Descricao "+i, BigDecimal.TEN, "enderecoDaImagem"));
+        }
+
+        RecyclerView.Adapter adapter = new ItemAdapter(this, lista);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

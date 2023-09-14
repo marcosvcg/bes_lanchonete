@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,10 +15,10 @@ import java.util.List;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
     private Context context;
-    private List<String> items;
-    public ItemAdapter(Context context, List items) {
+    private List<Produto> lista;
+    public ItemAdapter(Context context, List lista) {
         this.context = context;
-        this.items = items;
+        this.lista = lista;
     }
 
     @NonNull
@@ -30,17 +31,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        String product = items.get(position);
-        holder.setTextView1(product);
-        holder.setTextView2(product);
+        Produto produto = lista.get(position);
+        holder.setTextView1(produto.getNome());
+        holder.setTextView2(produto.getDescricao());
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return lista.size();
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView textView1;
         private TextView textView2;
@@ -48,6 +49,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             super(itemView);
             textView1 = itemView.findViewById(R.id.textView1);
             textView2 = itemView.findViewById(R.id.textView2);
+
+            itemView.setOnClickListener(this);
         }
 
         public void setTextView1(String title) {
@@ -56,6 +59,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         public void setTextView2(String subtitle) {
             this.textView2.setText(subtitle);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), this.textView1.getText().toString(), Toast.LENGTH_SHORT).show();
         }
     }
 }
