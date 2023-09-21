@@ -1,6 +1,8 @@
 package com.example.lanchonetebes;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,9 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
 
-    private Context context;
+    private Activity context;
     private List<Produto> lista;
-    public ItemAdapter(Context context, List lista) {
+    public ItemAdapter(Activity context, List lista) {
         this.context = context;
         this.lista = lista;
     }
@@ -34,6 +36,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         Produto produto = lista.get(position);
         holder.setTextView1(produto.getNome());
         holder.setTextView2(produto.getDescricao());
+        holder.setProduto(produto);
     }
 
     @Override
@@ -45,6 +48,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         private TextView textView1;
         private TextView textView2;
+
+        private Produto produto;
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             textView1 = itemView.findViewById(R.id.textView1);
@@ -61,9 +66,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             this.textView2.setText(subtitle);
         }
 
+        public void setProduto(Produto produto) {
+            this.produto = produto;
+        }
+
         @Override
         public void onClick(View view) {
             Toast.makeText(view.getContext(), this.textView1.getText().toString(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, DetalheActivity.class);
+            intent.putExtra("CHAVE", this.produto);
+
+            context.startActivity(intent);
         }
     }
 }

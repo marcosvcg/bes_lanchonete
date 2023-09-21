@@ -1,8 +1,9 @@
 package com.example.lanchonetebes;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Produto {
+public class Produto implements Serializable {
 
     private String nome;
     private String descricao;
