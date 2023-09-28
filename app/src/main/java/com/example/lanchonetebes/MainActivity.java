@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < 10; i++) {
             lista.add(new Produto("Produto "+i, "Descricao "+i, BigDecimal.TEN, "enderecoDaImagem"));
         }
+
+        Gson gson = new Gson();
+        String json = gson.toJson(lista);
+
+        // System.out.println(json);
 
         RecyclerView.Adapter adapter = new ItemAdapter(this, lista);
         recyclerView.setAdapter(adapter);
