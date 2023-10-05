@@ -13,11 +13,10 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(String nome, String descricao, BigDecimal preco, String imagem) {
+    public Produto(String nome, String descricao, BigDecimal preco) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-        this.imagem = imagem;
     }
 
     public String getNome() {

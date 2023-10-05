@@ -79,4 +79,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             context.startActivity(intent);
         }
     }
+
+    public void add(Produto produto) {
+        this.lista.add(produto);
+        this.notifyDataSetChanged();
+    }
+
 }
